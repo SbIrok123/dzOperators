@@ -209,60 +209,96 @@ bool Time_::operator<=(const Time_& obj) const&
 
 Time_& Time_::operator+=(int s)
 {
-    
+    int sumSeconds = hour * 3600 + minutes * 60 + seconds + s;
+    hour = (sumSeconds / 3600) % 24;
+    minutes = (sumSeconds % 3600) / 60;
+    seconds = sumSeconds % 60;
+    return *this;
 }
 
 Time_& Time_::operator-=(int s)
 {
-    // TODO: вставьте здесь оператор return
+    int totalSeconds = hour * 3600 + minutes * 60 + seconds - s;
+    hour = (totalSeconds / 3600) % 24;
+    minutes = (totalSeconds % 3600) / 60;
+    seconds = totalSeconds % 60;
+    return *this;
 }
 
 Time_& Time_::operator+=(float m)
 {
-    // TODO: вставьте здесь оператор return
+    int totalSeconds = hour * 3600 + minutes * 60 + seconds + int(m*60);
+    hour = (totalSeconds / 3600) % 24;
+    minutes = (totalSeconds % 3600) / 60;
+    seconds = totalSeconds % 60;
+    return *this;
 }
 
 Time_& Time_::operator-=(float m)
 {
-    // TODO: вставьте здесь оператор return
+    int totalSeconds = hour * 3600 + minutes * 60 + seconds - int(m * 60);
+    hour = (totalSeconds / 3600) % 24;
+    minutes = (totalSeconds % 3600) / 60;
+    seconds = totalSeconds % 60;
+    return *this;
 }
 
 Time_& Time_::operator+=(long h)
 {
-    // TODO: вставьте здесь оператор return
+    int totalSeconds = hour * 3600 + minutes * 60 + seconds + int(h * 3600);
+    hour = (totalSeconds / 3600) % 24;
+    minutes = (totalSeconds % 3600) / 60;
+    seconds = totalSeconds % 60;
+    return *this;
 }
 
 Time_& Time_::operator-=(long h)
 {
-    // TODO: вставьте здесь оператор return
+    int totalSeconds = hour * 3600 + minutes * 60 + seconds - int(h * 3600);
+    hour = (totalSeconds / 3600) % 24;
+    minutes = (totalSeconds % 3600) / 60;
+    seconds = totalSeconds % 60;
+    return *this;
 }
 
 Time_ Time_::operator+(int s) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp += s;
+    return tmp;
 }
 
 Time_ Time_::operator-(int s) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp -= s;
+    return tmp;
 }
 
 Time_ Time_::operator+(float m) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp += m;
+    return tmp;
 }
 
 Time_ Time_::operator-(float m) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp -= m;
+    return tmp;
 }
 
 Time_ Time_::operator+(long h) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp += h;
+    return tmp;
 }
 
 Time_ Time_::operator-(long h) const&
 {
-    return Time_();
+    Time_ tmp(*this);
+    tmp -= h;
+    return tmp;
 }
